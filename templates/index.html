@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      <div class="container">
+          <h1> Ian's Search Engine</h1>
+          <div class="container">
+
+              <form class="card card-sm" action="/" method="POST">
+                  <div class="card-body row no-gutters align-items-center">
+                      <div class="col-auto">
+                          <i class="fas fa-search h4 text-body"></i>
+                      </div>
+                      <div class="col">
+                          <input class="form-control form-control-lg form-control-borderless" autocomplete="off" name="query" id="search" type="query" placeholder="Search">
+                      </div>
+                      <div class="col-auto">
+                          <button class="btn btn-lg btn-success" type="submit">Search</button>
+                      </div>
+                  </div>
+              </form>
+              <ul class="list-group">
+                  {% block content %}
+                    {% if length != 0 %}
+                        {%for document in documents%}
+                            <li class="list-group-item">
+                                <a href={{"http://" + document["url"]}} target="_blank" class="list-group-item list-group-item-action">
+                                <h4>{{document["title"]}}</h4>
+                                <h5>{{document["description"]}}</h5>
+                                <div>
+                                    <small>{{document["url"]}}</small>
+                                </div>
+                                </a>
+                            </li>
+                        {%endfor%}
+                    {% else %}
+                        <li class="list-group-item">
+                            <h4>Zero Results</h4>
+                        </li>
+                    {% endif %}
+                {% endblock content %}
+
+              </ul>
+          </div>
+      </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
